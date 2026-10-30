@@ -1,0 +1,107 @@
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .journey-stage {
+    padding: 0 5vw;
+  }
+  
+  .journey-indicators {
+    right: 30px;
+  }
+  
+  .anatomy-header {
+    max-width: 400px;
+  }
+  
+  .callout {
+    max-width: 220px;
+  }
+}
+
+@media (max-width: 900px) {
+  .journey-sticky {
+    z-index: 55;
+  }
+
+  .journey-content {
+    max-width: min(520px, 92vw);
+    padding: 16px 18px;
+    border-radius: 16px;
+    background: rgba(5, 6, 7, 0.78);
+    backdrop-filter: blur(12px);
+  }
+
+  .journey-indicators {
+    right: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav {
+    padding: 12px 20px;
+    padding-top: max(12px, env(safe-area-inset-top));
+  }
+
+  .features-header {
+    width: min(560px, calc(100vw - 40px));
+    top: calc(var(--header-height) + 16px);
+  }
+  
+  .hero-title {
+    font-size: clamp(28px, 9vw, 52px);
+  }
+  
+  .hero-subtitle {
+    letter-spacing: 0.08em;
+    font-size: 10px;
+  }
+  
+  .tablet-master {
+    top: 54%;
+  }
+  
+  .journey-content {
+    max-width: 90vw;
+  }
+  
+  .panel-title {
+    font-size: clamp(28px, 8vw, 48px);
+  }
+  
+  .anatomy-header {
+    top: 12vh;
+    max-width: 90vw;
+  }
+  
+  .anatomy-title {
+    font-size: clamp(32px, 10vw, 60px);
+  }
+  
+  .features-nav {
+    bottom: calc(24px + env(safe-area-inset-bottom));
+    gap: 16px;
+  }
+  
+  .final-title {
+    font-size: clamp(40px, 12vw, 80px);
+  }
+  
+  .final-cta {
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  /* exploded-model UI (anatomy) */
+  .anatomy-progress {
+    display: none;
+  }
+  
+  .anatomy-tour .tour-title {
+    font-size: 15px;
+  }
+  
+  .anatomy-tour .tour-desc {
+    font-size: 12px;
+  }
+}

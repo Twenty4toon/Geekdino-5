@@ -1,0 +1,566 @@
+/* EXPLODED 3D MODEL */
+.model-stage {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  perspective: 1800px;
+}
+
+.model-stage.is-visible {
+  opacity: 1;
+}
+
+.model-stage.is-interactive {
+  pointer-events: auto;
+  cursor: grab;
+}
+
+.model-stage.is-interactive.drag {
+  cursor: grabbing;
+}
+
+.model-inner {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.model-stage.is-interactive .model-inner {
+  transition: none;
+}
+
+#scene3d {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  transform-style: preserve-3d;
+}
+
+#scene3d .f {
+  position: absolute;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  backface-visibility: hidden;
+}
+
+#scene3d .f.dbl {
+  backface-visibility: visible;
+}
+
+#scene3d .side,
+#scene3d .p {
+  backface-visibility: hidden;
+}
+
+#scene3d .p {
+  opacity: var(--o, 1);
+  transition: opacity 0.25s, filter 0.25s, box-shadow 0.25s;
+}
+
+.model-stage.has-sel #scene3d .p:not(.sel) {
+  opacity: calc(var(--o, 1) * 0.18);
+}
+
+#scene3d .p.sel {
+  filter: drop-shadow(0 0 10px var(--c));
+}
+
+#scene3d .g {
+  position: absolute;
+  width: 0;
+  height: 0;
+  transform-style: preserve-3d;
+}
+
+#scene3d .t {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 1.1;
+  color: var(--c);
+  letter-spacing: 0.3px;
+  font-family: var(--font-ui);
+}
+
+/* labels */
+#labels3d,
+#ln3d {
+  display: none;
+}
+
+.w3d-lab {
+  position: absolute;
+  left: 0;
+  top: 0;
+  text-align: left;
+  border-radius: 10px;
+  padding: 7px 10px;
+  background: rgba(10, 14, 22, 0.88);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(245, 247, 246, 0.14);
+  border-left: 4px solid var(--c);
+  color: var(--ink);
+  will-change: transform;
+  opacity: 0;
+  font-family: var(--font-ui);
+}
+
+.w3d-lab b {
+  display: block;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+}
+
+.w3d-lab small {
+  display: block;
+  color: var(--muted);
+  font-size: 11.5px;
+  line-height: 1.3;
+  font-weight: 400;
+}
+
+.w3d-lab.on {
+  box-shadow: 0 0 0 1px var(--c), 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 700px) {
+  .w3d-lab {
+    padding: 5px 7px;
+  }
+  .w3d-lab b {
+    font-size: 12px;
+  }
+  .w3d-lab small {
+    font-size: 10px;
+  }
+}
+
+/* ---------- anatomy layout (rebuild) ---------- */
+.anatomy {
+  position: relative;
+  height: 700vh;
+}
+
+.anatomy-bg {
+  position: absolute;
+  inset: 0;
+}
+
+.anatomy-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(60, 245, 160, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(60, 245, 160, 0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+  opacity: 0.4;
+}
+
+.anatomy-kicker {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.anatomy-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(40px, 7vw, 80px);
+  line-height: 1;
+  margin-bottom: 20px;
+}
+
+.anatomy-title span {
+  color: var(--accent);
+}
+
+.anatomy-desc {
+  font-size: 18px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.anatomy-intro {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--gutter);
+  /* above .model-stage (z-40) so the header stays crisp if the tablet edge overlaps it */
+  z-index: 50;
+  pointer-events: none;
+}
+
+.anatomy-header {
+  max-width: 560px;
+}
+
+.anatomy-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  /* sticky always creates a stacking context — this z-index must stay ABOVE
+     .model-stage (z-40) or the legend/tour/toolbar get trapped beneath it */
+  z-index: 60;
+  pointer-events: none;
+}
+
+/* legend — parts list */
+.anatomy-legend {
+  position: absolute;
+  left: var(--gutter);
+  bottom: 12vh;
+  width: min(320px, 34vw);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+  z-index: 60;
+  pointer-events: auto;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.anatomy-legend.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.legend-part {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  text-align: left;
+  border-radius: 12px;
+  min-height: 44px;
+  padding: 8px 10px;
+  background: rgba(12, 14, 16, 0.88);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--color-border);
+  color: var(--ink);
+  transition: border-color var(--ease), box-shadow var(--ease), background var(--ease);
+  width: 100%;
+}
+
+.legend-part i {
+  flex: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
+  margin-top: 4px;
+  background: var(--c);
+  box-shadow: 0 0 8px var(--c);
+}
+
+.legend-part b {
+  display: block;
+  font-size: 13px;
+  font-family: var(--font-ui);
+  letter-spacing: 0.04em;
+}
+
+.legend-part small {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.3;
+}
+
+.legend-part:hover,
+.legend-part.on {
+  border-color: var(--c);
+  box-shadow: inset 0 0 0 1px var(--c);
+}
+
+.legend-part.on {
+  background: color-mix(in srgb, var(--c) 14%, rgba(12, 14, 16, 0.92));
+}
+
+.legend-part:active {
+  opacity: 0.9;
+}
+
+/* toolbar */
+.anatomy-bar {
+  position: absolute;
+  left: 50%;
+  bottom: calc(3vh + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  max-width: min(1080px, calc(100vw - 48px));
+  overflow-x: auto;
+  background: rgba(12, 14, 16, 0.92);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border);
+  z-index: 65;
+  pointer-events: auto;
+  font-family: var(--font-ui);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.anatomy-bar.is-visible {
+  opacity: 1;
+}
+
+.anatomy-bar .chip {
+  background: rgba(245, 247, 246, 0.06);
+  border: 1px solid rgba(245, 247, 246, 0.16);
+  border-radius: 999px;
+  min-height: var(--tap);
+  padding: 8px 14px;
+  color: var(--ink);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: border-color var(--ease), color var(--ease), background var(--ease), opacity var(--ease);
+}
+
+.anatomy-bar .chip-icon {
+  width: var(--tap);
+  min-width: var(--tap);
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.anatomy-bar .chip-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.anatomy-bar .chip:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.anatomy-bar .chip.on {
+  background: var(--accent);
+  color: var(--color-on-accent);
+  border-color: var(--accent);
+}
+
+.anatomy-bar .chip:active {
+  opacity: 0.86;
+}
+
+.anatomy-bar .spread-label,
+.anatomy-bar label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: var(--tap);
+}
+
+.anatomy-bar input[type='range'] {
+  width: min(140px, 22vw);
+  height: 24px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.anatomy-hint {
+  display: none;
+  position: absolute;
+  left: 50%;
+  bottom: calc(11vh + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  font-family: var(--font-ui);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+  z-index: 60;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.anatomy-hint.is-visible {
+  opacity: 0.8;
+}
+
+/* part tour caption — right column, clear of the toolbar */
+.anatomy-tour {
+  position: absolute;
+  right: var(--gutter);
+  top: 50%;
+  left: auto;
+  bottom: auto;
+  transform: translateY(calc(-50% + 12px));
+  text-align: left;
+  max-width: 320px;
+  width: min(320px, 28vw);
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: rgba(12, 14, 16, 0.92);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border);
+  border-top: 3px solid var(--c, var(--accent));
+  z-index: 60;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.anatomy-tour.is-visible {
+  opacity: 1;
+  transform: translateY(-50%);
+}
+
+.anatomy-tour .tour-num {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  color: var(--c, var(--accent));
+  text-transform: uppercase;
+}
+
+.anatomy-tour .tour-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  margin: 6px 0 4px;
+  letter-spacing: 0.06em;
+}
+
+.anatomy-tour .tour-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* progress rail */
+.anatomy-progress {
+  position: fixed;
+  left: 10px;
+  right: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 200px;
+  background: rgba(245, 247, 246, 0.1);
+  z-index: 90;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.anatomy-progress.is-visible {
+  opacity: 1;
+}
+
+.anatomy-progress i {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+}
+
+/* features: shift model right so slides breathe on the left; drop under text */
+.model-stage.features-mode {
+  z-index: 5;
+}
+
+.model-stage.features-mode .model-inner {
+  transform: translateX(18vw);
+}
+
+/* finale: text sits above the dimmed model */
+.model-stage.final-mode {
+  z-index: 5;
+}
+
+@media (max-width: 900px) {
+  .model-stage.features-mode .model-inner {
+    transform: translateX(0) translateY(-12vh);
+    opacity: 0.35;
+  }
+  .anatomy-legend {
+    width: min(260px, 46vw);
+    bottom: 14vh;
+  }
+}
+
+@media (max-width: 700px) {
+  .anatomy {
+    height: 620vh;
+  }
+  .anatomy-legend {
+    left: 12px;
+    right: 12px;
+    width: auto;
+    bottom: calc(18vh + env(safe-area-inset-bottom));
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+  }
+  .legend-part {
+    padding: 8px;
+  }
+  .legend-part small {
+    display: none;
+  }
+  .anatomy-bar {
+    bottom: calc(12px + env(safe-area-inset-bottom));
+    gap: 6px;
+    padding: 8px 10px;
+    width: calc(100vw - 24px);
+    max-width: none;
+    flex-wrap: wrap;
+    border-radius: 20px;
+  }
+  .anatomy-bar .chip {
+    min-height: var(--tap);
+    padding: 8px 12px;
+    font-size: 11px;
+  }
+  .anatomy-bar input[type='range'] {
+    width: 72px;
+  }
+  .anatomy-hint {
+    display: none;
+  }
+  .anatomy-tour {
+    left: 12px;
+    right: 12px;
+    top: calc(var(--header-height) + 12px);
+    bottom: auto;
+    width: auto;
+    max-width: none;
+    transform: none;
+    text-align: left;
+  }
+  .anatomy-tour.is-visible {
+    transform: none;
+  }
+}

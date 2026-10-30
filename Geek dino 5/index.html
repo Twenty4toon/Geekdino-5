@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <title>WorkTab V – Geek Dino</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Outfit:wght@400;600;800&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Scroll progress bar -->
+  <div class="bar"></div>
+
+  <!-- ============ Site header / navigation ============ -->
+  <header>
+    <nav aria-label="Main">
+      <div class="wrap">
+        <a href="#home"><img class="d" src="assets/images/geek-dino-mascot.png" alt="Geek Dino home"></a>
+        <img class="w" src="assets/images/worktab-logo.jpg" alt="WorkTab V">
+        <a class="l" href="#home">Home</a>
+        <a class="l" href="#about">About us</a>
+        <a class="l" href="#solutions">Solutions</a>
+        <a class="l" href="#products">Products</a>
+        <a class="l" href="#blog">Blog</a>
+        <a class="l" href="#support">Support</a>
+        <a class="btn" href="#quote">Request a quote</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ============ PAGE: Home ============ -->
+  <main id="home" class="on">
+
+    <!-- Hero -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap">
+        <div>
+          <h1 id="hero-title">Power your <em>curiosity.</em></h1>
+          <p>WorkTab V is a powerful learning tablet for students, creators and curious minds, built to work, learn and play in one device.</p>
+          <div class="cta">
+            <a class="btn" href="#quote">Request a quote</a>
+            <a class="btn ghost" href="#specs">Explore the specs</a>
+          </div>
+        </div>
+        <div class="stage">
+          <img id="tab" src="assets/images/worktab-hero.jpg" alt="Geek Dino mascot beside the WorkTab V tablet">
+        </div>
+      </div>
+    </section>
+
+    <!-- Pinned scroll story: Work / Learn / Play / Connect -->
+    <div class="scrolly" id="scrolly">
+      <div class="pin">
+        <div>
+          <div class="words">
+            <div class="on"><h2>Work</h2><p>Bills, routes, customers and reports, all in one hand.</p></div>
+            <div><h2>Learn</h2><p>Lessons, videos and homework on an 8.4″ HD IPS display.</p></div>
+            <div><h2>Play</h2><p>Games and shows, with parental controls to keep it safe for learning.</p></div>
+            <div><h2>Connect</h2><p>4G LTE keeps you online anywhere there’s a signal.</p></div>
+          </div>
+          <div class="rail"><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i></div>
+        </div>
+
+        <div class="slate">
+          <div class="dev">
+            <div class="sc on"><span>New bill</span><span>Route 12: 14 stops</span><span>Customer notes</span></div>
+            <div class="sc"><span>Maths: Chapter 4</span><span>Science video</span><span>Homework due Friday</span></div>
+            <div class="sc"><span>Games</span><span>Videos</span><span>Parental controls: on</span></div>
+            <div class="sc sc--center">
+              <div class="sig sig--lg">
+                <i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i>
+              </div>
+              <b class="signal-label">4G LTE</b>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Decorative marquee -->
+    <div class="marq" aria-hidden="true"><div>WORK · LEARN · PLAY · WORK · LEARN · PLAY</div></div>
+
+    <!-- Key numbers -->
+    <section class="section--stats" aria-label="Key numbers">
+      <div class="wrap nums">
+        <p class="rv"><b data-to="8" data-s="-core">0</b><span>Processor</span></p>
+        <p class="rv delay-1"><b data-to="8.4" data-d="1" data-s="″">0</b><span>HD IPS display</span></p>
+        <p class="rv delay-2"><b data-to="7100" data-s=" mAh">0</b><span>All-day battery</span></p>
+        <p class="rv delay-3"><b data-to="512" data-s=" GB">0</b><span>Expandable storage</span></p>
+      </div>
+    </section>
+
+    <!-- Interactive spec explorer (filled by js/main.js) -->
+    <section id="specs" class="section--alt">
+      <div class="wrap">
+        <h2>What’s inside WorkTab V</h2>
+        <p class="sub">Pick a feature and try it.</p>
+        <div class="tabs" id="stabs" role="tablist" aria-label="WorkTab V features"></div>
+        <div class="panel" id="spanel" aria-live="polite">
+          <div>
+            <div class="big" id="sbig"></div>
+            <p id="stxt"></p>
+          </div>
+          <div class="viz" id="sviz"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Use-case cards (filled by js/main.js) -->
+    <section>
+      <div class="wrap">
+        <h2>One tablet, every kind of work</h2>
+        <p class="sub">Six ways teams put WorkTab V to work.</p>
+        <div class="grid" id="hgrid"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ PAGE: About us ============ -->
+  <main id="about">
+    <div class="wrap ph">
+      <h1>About us</h1>
+      <p>Geek Dino Labs builds tablets designed for work, learning and play, from Coimbatore.</p>
+    </div>
+
+    <section class="section--tight">
+      <div class="wrap grid">
+        <article class="card rv"><h3>Work</h3><p>Rugged, portable devices for logistics, CRM, POS, retail and field teams.</p></article>
+        <article class="card rv delay-1"><h3>Learn</h3><p>Tablets that let students and teachers learn and teach anywhere.</p></article>
+        <article class="card rv delay-2"><h3>Play</h3><p>Fun that stays safe, with parental controls built in.</p></article>
+      </div>
+    </section>
+
+    <div class="marq" aria-hidden="true"><div>EXPLORE DIGITAL · EXPLORE DIGITAL · EXPLORE DIGITAL</div></div>
+
+    <section class="section--tighter">
+      <div class="wrap">
+        <h2>Digitise your business with us</h2>
+        <p class="sub">Explore the digital conversion of your business through Geek Dino products and solutions. Visit us at 180, Race Course Rd, Coimbatore.</p>
+        <a class="btn" href="#quote">Talk to our team</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ PAGE: Solutions ============ -->
+  <main id="solutions">
+    <div class="wrap ph">
+      <h1>Solutions</h1>
+      <p>Choose your line of work to see how WorkTab V fits in.</p>
+    </div>
+
+    <section class="section--tight">
+      <div class="wrap">
+        <div class="tabs" id="utabs" role="tablist" aria-label="Use cases"></div>
+        <div class="panel">
+          <div>
+            <div class="big big--sm" id="ubig"></div>
+            <p id="utxt"></p>
+            <a class="btn btn--spaced" href="#quote">Request a quote</a>
+          </div>
+          <div class="viz"><div class="mock" id="umock"></div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ PAGE: Products ============ -->
+  <main id="products">
+    <div class="wrap ph">
+      <h1>Products</h1>
+      <p>Which tab is right for you?</p>
+    </div>
+
+    <div class="wrap feat">
+      <img src="assets/images/worktab-hero.jpg" alt="WorkTab V tablet with Geek Dino mascot">
+      <div>
+        <h2>WorkTab V</h2>
+        <p class="sub sub--flush">Our newest tablet.</p>
+        <ul class="spec-list">
+          <li>Octa-core processor</li>
+          <li>8.4″ HD IPS display</li>
+          <li>7100 mAh battery</li>
+          <li>4G LTE</li>
+          <li>Parental controls</li>
+          <li>Expandable storage up to 512 GB</li>
+        </ul>
+        <p class="feat-cta"><a class="btn" href="#quote">Request a quote</a></p>
+      </div>
+    </div>
+
+    <section class="section--tighter">
+      <div class="wrap">
+        <h2>Earlier models</h2>
+        <p class="sub">Worktab, Carno and Raptor share Android 10*, an eye-friendly Full HD display, 5-point capacitive touch and universal micro USB charging.</p>
+        <div class="grid">
+          <article class="card rv"><h3>Worktab</h3><p>Spec sheet on request.</p></article>
+          <article class="card rv delay-1"><h3>Carno</h3><p>Spec sheet on request.</p></article>
+          <article class="card rv delay-2"><h3>Raptor</h3><p>Spec sheet on request.</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ PAGE: Blog ============ -->
+  <main id="blog">
+    <div class="wrap ph">
+      <h1>Blog</h1>
+      <p>Sample posts to show the layout. Replace with your own articles.</p>
+    </div>
+
+    <section class="section--tight">
+      <div class="wrap">
+        <div class="tabs" id="btabs" role="tablist" aria-label="Blog categories"></div>
+        <div class="grid" id="bgrid"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ PAGE: Support ============ -->
+  <main id="support">
+    <div class="wrap ph">
+      <h1>Support</h1>
+      <p>Answers first. If you still need us, we’re one message away.</p>
+    </div>
+
+    <section class="section--tight">
+      <div class="wrap">
+        <details><summary>How do I get a quote?</summary><p>Use the Request a quote button, fill in the form and we’ll reply on WhatsApp.</p></details>
+        <details><summary>Does WorkTab V support 4G?</summary><p>Yes. WorkTab V has 4G LTE connectivity.</p></details>
+        <details><summary>Can I add storage?</summary><p>Yes. Storage is expandable up to 512 GB.</p></details>
+        <details><summary>Does it have parental controls?</summary><p>Yes. WorkTab V includes parental controls for safe learning.</p></details>
+        <details><summary>Where are you based?</summary><p>180, Race Course Rd, Race Course, Coimbatore, Tamil Nadu 641018.</p></details>
+
+        <div class="grid grid--spaced">
+          <a class="card" href="tel:+918220001821"><h3>Call</h3><p>82200 01821</p></a>
+          <a class="card" href="https://wa.me/918220001821"><h3>WhatsApp</h3><p>Message us</p></a>
+          <a class="card" href="mailto:sales@geekdino.com"><h3>Email</h3><p>sales@geekdino.com</p></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ Quote form (shared across pages) ============ -->
+  <section id="quote" class="section--alt">
+    <div class="wrap q">
+      <div>
+        <h2>Get WorkTab V for your team</h2>
+        <p class="sub">Tell us what you need and we’ll reply on WhatsApp with a quote.</p>
+
+        <form class="form" id="qf">
+          <label>Your name
+            <input name="n" required autocomplete="name">
+          </label>
+          <label>Phone
+            <input name="p" type="tel" required autocomplete="tel">
+          </label>
+          <label>Use case
+            <select name="u"></select>
+          </label>
+          <label>Number of tablets
+            <input name="c" type="number" min="1" value="1" required>
+          </label>
+          <button class="btn" type="submit">Send on WhatsApp</button>
+        </form>
+
+        <p class="sub form-note">Prefer email? Write to <a class="link-accent" href="mailto:sales@geekdino.com">sales@geekdino.com</a></p>
+      </div>
+      <img src="assets/images/geek-dino-mascot.png" alt="Geek Dino mascot wearing glasses">
+    </div>
+  </section>
+
+  <!-- ============ Footer ============ -->
+  <footer>
+    <div class="wrap">
+      <span>© 2026 Geek Dino Labs</span>
+      <address>180, Race Course Rd, Coimbatore, Tamil Nadu 641018</address>
+      <span><a href="tel:+918220001821">82200 01821</a> · <a href="https://geekdino.com/">geekdino.com</a></span>
+    </div>
+  </footer>
+
+  <!-- Walking dino (decorative, follows scroll) -->
+  <img class="walk" id="walk" src="assets/images/geek-dino-mascot.png" alt="">
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

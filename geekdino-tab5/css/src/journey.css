@@ -1,0 +1,123 @@
+/* JOURNEY */
+.journey {
+  position: relative;
+  height: 400vh;
+}
+
+.journey-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.journey-stage {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 var(--gutter);
+}
+
+.journey-content {
+  position: relative;
+  z-index: 10;
+  max-width: 500px;
+}
+
+.journey-panel {
+  position: absolute;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+  pointer-events: none;
+}
+
+.journey-panel.is-active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.panel-kicker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.panel-kicker::before {
+  content: '';
+  width: 30px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.panel-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(32px, 5vw, 64px);
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.panel-title span {
+  color: var(--accent);
+}
+
+.panel-text {
+  font-size: 18px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.journey-indicators {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 10;
+}
+
+.journey-dot {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  position: relative;
+  transition: transform 0.2s;
+}
+
+.journey-dot::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(245, 247, 246, 0.35);
+  transform: translate(-50%, -50%);
+  transition: background 0.2s, box-shadow 0.2s, width 0.2s, height 0.2s;
+}
+
+.journey-dot.is-active::after {
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent);
+  width: 10px;
+  height: 10px;
+}
+
+.journey-dot:hover::after {
+  background: var(--color-foreground);
+}
