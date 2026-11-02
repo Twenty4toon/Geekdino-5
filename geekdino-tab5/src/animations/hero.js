@@ -5,11 +5,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const tabletFloat = document.getElementById('tabletFloat');
   const heroSection = document.getElementById('hero');
   const heroSpot = document.querySelector('.hero-spot');
+  const heroStamp = document.querySelector('.hero-stamp');
   const heroTitle = document.querySelector('.hero-title');
   const heroKicker = document.querySelector('.hero-kicker');
   const heroSub = document.querySelector('.hero-subtitle');
   const heroDesc = document.querySelector('.hero-desc');
+  const heroStatsRow = document.querySelector('.hero-stats-row');
   const heroBadges = document.querySelector('.hero-badges');
+  const hero3dBadge = document.getElementById('hero3dBadge');
   const ctaButtons = document.querySelectorAll('.hero-cta .btn');
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -37,9 +40,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     var tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
+    // 0. Marginalia technical stamp
+    if (heroStamp) {
+      tl.fromTo(heroStamp, { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.6 }, 0);
+    }
+
     // 1. Kicker fade & slide
     if (heroKicker) {
-      tl.fromTo(heroKicker, { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.8 }, 0);
+      tl.fromTo(heroKicker, { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.8 }, 0.08);
     }
 
     // 2. Split headline reveal from line masks
@@ -47,10 +55,10 @@ document.addEventListener('DOMContentLoaded', () => {
       tl.fromTo(titleWords,
         { yPercent: 110, rotate: 3, opacity: 0 },
         { yPercent: 0, rotate: 0, opacity: 1, duration: 1.0, stagger: 0.04, ease: 'power4.out' },
-        0.15
+        0.18
       );
     } else if (heroTitle) {
-      tl.fromTo(heroTitle, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.9 }, 0.15);
+      tl.fromTo(heroTitle, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.9 }, 0.18);
     }
 
     // 3. Subtitle & Description
@@ -60,9 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (heroDesc) {
       tl.fromTo(heroDesc, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7 }, 0.55);
     }
-    if (heroBadges) {
-      tl.fromTo(heroBadges, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7 }, 0.65);
-    }
 
     // 4. CTA buttons stagger
     if (ctaButtons.length > 0) {
@@ -70,6 +75,28 @@ document.addEventListener('DOMContentLoaded', () => {
         { opacity: 0, y: 24, scale: 0.95 },
         { opacity: 1, y: 0, scale: 1, duration: 0.8, stagger: 0.1, ease: 'back.out(1.8)' },
         0.7
+      );
+    }
+
+    // 5. 4-Stat Hairline Row snapshot
+    if (heroStatsRow) {
+      tl.fromTo(heroStatsRow,
+        { opacity: 0, y: 24 },
+        { opacity: 1, y: 0, duration: 0.85, ease: 'power3.out' },
+        0.82
+      );
+    }
+
+    if (heroBadges) {
+      tl.fromTo(heroBadges, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6 }, 0.95);
+    }
+
+    // 6. Floating 3D Rotation Badge
+    if (hero3dBadge) {
+      tl.fromTo(hero3dBadge,
+        { opacity: 0, scale: 0.85 },
+        { opacity: 1, scale: 1, duration: 0.8, ease: 'back.out(1.6)' },
+        1.05
       );
     }
 

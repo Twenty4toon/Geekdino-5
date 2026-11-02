@@ -232,21 +232,85 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* --------------------------------------------------------------------------
-     7. ENQUIRY & REQUEST A QUOTE FORM
+     7. ENQUIRY & PROCUREMENT TIER CALCULATOR
      -------------------------------------------------------------------------- */
   const quoteForm = document.getElementById('quoteForm');
   const btnWhatsAppQuote = document.getElementById('btnWhatsAppQuote');
   const quoteSuccessModal = document.getElementById('quoteSuccess');
   const quantityInput = document.getElementById('quoteQuantity');
   const qtyPills = Array.from(document.querySelectorAll('.qty-pill'));
+  const tierTag = document.getElementById('tierTag');
+  const tierDispatch = document.getElementById('tierDispatch');
+  const tierPerk = document.getElementById('tierPerk');
+
+  function calculateProcurementTier(qty) {
+    const n = parseInt(qty, 10) || 1;
+    if (n < 10) {
+      return {
+        tag: 'Evaluation / Single Unit',
+        dispatch: '• Dispatch in 24-48 Hours',
+        perk: 'Includes standard 1-year hardware warranty + express doorstep replacement.',
+        discount: 'Standard Retail'
+      };
+    } else if (n < 50) {
+      return {
+        tag: 'Standard Volume Tier (10+ Units)',
+        dispatch: '• Dispatch in 48 Hours',
+        perk: 'Includes 10% educational/institutional fleet subsidy + Coimbatore Labs direct warranty.',
+        discount: '10% Fleet Subsidy'
+      };
+    } else if (n < 100) {
+      return {
+        tag: 'Commercial Fleet Tier (50+ Units)',
+        dispatch: '• Dispatch in 3-5 Days',
+        perk: 'Includes 16% volume savings + complimentary school/enterprise app preloading.',
+        discount: '16% Volume Savings'
+      };
+    } else if (n < 500) {
+      return {
+        tag: 'Enterprise Deployment Tier (100+ Units)',
+        dispatch: '• Priority Fleet Dispatch',
+        perk: 'Includes 22% volume discount + custom Kiosk/MDM lockdown provisioning.',
+        discount: '22% Enterprise Discount'
+      };
+    } else {
+      return {
+        tag: 'Directorate / Government Bulk Tier (500+ Units)',
+        dispatch: '• Dedicated SLA & Staggered Delivery',
+        perk: 'Includes custom master procurement rate + dedicated on-site technical account manager.',
+        discount: 'Contract Custom Rate'
+      };
+    }
+  }
+
+  function updateTierDisplay() {
+    const qty = quantityInput ? quantityInput.value : 10;
+    const tier = calculateProcurementTier(qty);
+    if (tierTag) tierTag.textContent = tier.tag;
+    if (tierDispatch) tierDispatch.textContent = tier.dispatch;
+    if (tierPerk) tierPerk.textContent = tier.perk;
+  }
+
+  if (quantityInput) {
+    quantityInput.addEventListener('input', () => {
+      const val = parseInt(quantityInput.value, 10);
+      qtyPills.forEach(p => {
+        p.classList.toggle('is-active', parseInt(p.dataset.qty, 10) === val);
+      });
+      updateTierDisplay();
+    });
+  }
 
   qtyPills.forEach((pill) => {
     pill.addEventListener('click', () => {
       const qty = pill.dataset.qty;
       if (quantityInput) quantityInput.value = qty;
       qtyPills.forEach(p => p.classList.toggle('is-active', p === pill));
+      updateTierDisplay();
     });
   });
+
+  updateTierDisplay();
 
   function getQuoteFormData() {
     return {
@@ -260,20 +324,22 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
 
-  // WhatsApp Quote Link Generator
+  // WhatsApp Quote Link Generator with Live Tier Details
   if (btnWhatsAppQuote) {
     btnWhatsAppQuote.addEventListener('click', (e) => {
       e.preventDefault();
       const d = getQuoteFormData();
-      const text = `Hello Geek Dino Labs! I would like to request a quote for GEEKDINO TAB 5.\n\n` +
+      const tier = calculateProcurementTier(d.qty);
+      const text = `Hello Geek Dino Labs! I would like to request an official institutional quote for GEEKDINO TAB 5.\n\n` +
         `• Name: ${d.name || 'Inquirer'}\n` +
         `• Email: ${d.email || 'N/A'}\n` +
         `• Phone: ${d.phone || 'N/A'}\n` +
         `• Organisation/School: ${d.org || 'N/A'}\n` +
-        `• Tablets Needed: ${d.qty}\n` +
+        `• Tablets Needed: ${d.qty} unit(s) [${tier.tag}]\n` +
+        `• Applicable Benefit: ${tier.discount}\n` +
         `• Primary Use Case: ${d.usecase}\n` +
         (d.msg ? `• Notes: ${d.msg}\n` : '') +
-        `\nPlease provide availability, institutional pricing and dispatch turnaround. Thank you!`;
+        `\nPlease provide commercial quotation, tax invoice details, and dispatch timeline. Thank you!`;
 
       const waUrl = `https://wa.me/918220001821?text=${encodeURIComponent(text)}`;
       window.open(waUrl, '_blank', 'noopener,noreferrer');
@@ -285,6 +351,7 @@ document.addEventListener('DOMContentLoaded', () => {
     quoteForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const d = getQuoteFormData();
+      const tier = calculateProcurementTier(d.qty);
 
       if (!d.name || !d.phone) {
         alert('Please fill in your Name and Phone number so our Coimbatore sales team can send your quote.');
@@ -297,7 +364,7 @@ document.addEventListener('DOMContentLoaded', () => {
         quoteSuccessModal.classList.add('is-active');
         const summary = document.getElementById('quoteSuccessSummary');
         if (summary) {
-          summary.textContent = `Thank you, ${d.name}! Your enquiry for ${d.qty} GEEKDINO TAB 5 unit(s) for ${d.org || 'your team'} has been received. Our sales team will reach out via WhatsApp / phone (${d.phone}) within 2 business hours.`;
+          summary.textContent = `Thank you, ${d.name}! Your enquiry for ${d.qty} GEEKDINO TAB 5 unit(s) (${tier.tag}) for ${d.org || 'your team'} has been received. Our sales team in Coimbatore will reach out via WhatsApp / phone (${d.phone}) within 2 business hours.`;
         }
       }
     });

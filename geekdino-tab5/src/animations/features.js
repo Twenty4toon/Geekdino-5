@@ -1,63 +1,39 @@
-// FEATURES & SPECS — desktop horizontal track pinning + mobile stacked layout + 3D model part sync
+// FEATURES & SPECS — Bento Grid Staggered Reveal + 3D Model Part Sync
 document.addEventListener('DOMContentLoaded', () => {
   const stage = document.getElementById('modelStage');
   const model = window.WorkTab3D;
   const featuresSection = document.querySelector('.features');
+  const cards = gsap.utils.toArray('.feature-card');
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined' || !featuresSection) return;
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined' || !featuresSection || cards.length === 0) return;
   gsap.registerPlugin(ScrollTrigger);
 
-  const mm = gsap.matchMedia();
-
-  // Desktop (>= 1024px): horizontal pinned spec track
-  mm.add('(min-width: 1024px)', () => {
-    const track = document.getElementById('featuresTrack');
-    const cards = gsap.utils.toArray('.feature-card');
-    if (!track || cards.length === 0 || reduce) return;
-
-    // Pin section and scroll horizontally
-    const totalScroll = track.scrollWidth - track.clientWidth;
-    if (totalScroll > 50) {
-      gsap.to(track, {
-        x: () => -totalScroll,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: featuresSection,
-          pin: true,
-          scrub: 1.1,
-          start: 'top top',
-          end: () => `+=${totalScroll * 1.5}`,
-          invalidateOnRefresh: true,
-          onUpdate: (self) => {
-            if (model && stage && stage.classList.contains('is-visible')) {
-              const partIdx = Math.min(cards.length - 1, Math.floor(self.progress * cards.length));
-              const partId = cards[partIdx]?.dataset.part;
-              if (partId) model.selectPart(partId);
-            }
+  if (!reduce) {
+    cards.forEach((card) => {
+      gsap.fromTo(card,
+        { opacity: 0, y: 36, scale: 0.98 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.75,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 88%',
+            toggleActions: 'play none none none'
           }
         }
-      });
-    }
-  });
+      );
 
-  // Mobile / Tablet (< 1024px): stacked cards with stagger animation
-  mm.add('(max-width: 1023px)', () => {
-    const cards = gsap.utils.toArray('.feature-card');
-    if (cards.length === 0 || reduce) return;
-
-    cards.forEach((card) => {
-      gsap.from(card, {
-        opacity: 0,
-        y: 30,
-        duration: 0.8,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: card,
-          start: 'top 85%',
-          toggleActions: 'play none none none'
+      // Interactive hover sync with 3D exploded model subsystem
+      card.addEventListener('mouseenter', () => {
+        const partId = card.dataset.part;
+        if (partId && model && stage && stage.classList.contains('is-visible')) {
+          model.selectPart(partId);
         }
       });
     });
-  });
+  }
 });

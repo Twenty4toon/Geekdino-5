@@ -187,6 +187,16 @@
           <div class="hero-grid"></div>
         </div>
         <div class="hero-content">
+          <!-- Editorial Technical Marginalia Stamp -->
+          <div class="hero-stamp" aria-label="Technical Specification Tag">
+            <span class="hero-stamp-dot" aria-hidden="true"></span>
+            <span class="hero-stamp-code">SPEC SHEET 2026-V</span>
+            <span class="hero-stamp-sep">//</span>
+            <span class="hero-stamp-tag">COIMBATORE LABS</span>
+            <span class="hero-stamp-sep">//</span>
+            <span class="hero-stamp-tag">ENTERPRISE &amp; EDU</span>
+          </div>
+
           <p class="hero-kicker">
             <span class="pulse" aria-hidden="true"></span> Geek Dino Labs &mdash; Tab 5
           </p>
@@ -199,6 +209,27 @@
             <a class="btn btn-primary" href="#quote">Get a Quote</a>
             <a class="btn btn-ghost" href="#features">Explore Specs</a>
           </div>
+
+          <!-- 4-Stat Hairline Row (Tabular Figures & Direct Specs) -->
+          <div class="hero-stats-row" aria-label="Key Hardware Metrics">
+            <div class="hero-stat-cell">
+              <div class="hero-stat-val">8.4<span class="stat-unit">&Prime;</span></div>
+              <div class="hero-stat-lbl">1200&times;1920 IPS</div>
+            </div>
+            <div class="hero-stat-cell">
+              <div class="hero-stat-val">7100<span class="stat-unit">mAh</span></div>
+              <div class="hero-stat-lbl">14h Full Shift</div>
+            </div>
+            <div class="hero-stat-cell">
+              <div class="hero-stat-val">8<span class="stat-unit">Core</span></div>
+              <div class="hero-stat-lbl">2.2 GHz Engine</div>
+            </div>
+            <div class="hero-stat-cell">
+              <div class="hero-stat-val">4G<span class="stat-unit">LTE</span></div>
+              <div class="hero-stat-lbl">VoLTE Dual SIM</div>
+            </div>
+          </div>
+
           <div class="hero-badges" aria-label="Key highlights">
             <span class="badge-pill"><span class="dot-accent" aria-hidden="true"></span>8.4" IPS 1200&times;1920</span>
             <span class="badge-pill"><span class="dot-accent" aria-hidden="true"></span>Octa-Core 2.2 GHz</span>
@@ -206,6 +237,17 @@
             <span class="badge-pill"><span class="dot-accent" aria-hidden="true"></span>7100 mAh All-Day</span>
             <span class="badge-pill"><span class="dot-accent" aria-hidden="true"></span>4G LTE SIM</span>
             <span class="badge-pill"><span class="dot-accent" aria-hidden="true"></span>Android 17</span>
+          </div>
+        </div>
+
+        <!-- Floating Interactive 3D Rotation Badge -->
+        <div class="hero-3d-badge" id="hero3dBadge" aria-hidden="true">
+          <div class="hero-3d-icon-spin">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 21h5v-5"/></svg>
+          </div>
+          <div class="hero-3d-badge-text">
+            <span class="badge-title">INTERACTIVE 3D</span>
+            <span class="badge-sub">DRAG TO ROTATE 360&deg;</span>
           </div>
         </div>
       </section>
@@ -368,127 +410,228 @@
       </section>
 
       <!-- ==================================================================
-           9. SPECS SECTION (Horizontal Track on Desktop, Stacked on Mobile)
+           9. SPECS SECTION (Irregular Bento Grid Layout // Inspo MCP Hardware Showcase)
            ================================================================== -->
       <section class="features" id="features" aria-labelledby="specsTitle">
         <div class="features-header">
-          <p class="features-kicker">HARDWARE SPECIFICATIONS</p>
+          <p class="features-kicker">HARDWARE ARCHITECTURE // SPEC SHEET</p>
           <h2 class="features-title" id="specsTitle">ENGINEERED TO PERFORM.</h2>
-          <p class="features-desc">Every subsystem calibrated for high duty cycles, extreme battery efficiency, and zero operational bottlenecks.</p>
+          <p class="features-desc">Every subsystem calibrated for high duty cycles, extreme battery efficiency, and zero operational bottlenecks in commercial field service.</p>
         </div>
 
         <div class="features-track-wrapper">
           <div class="features-grid" id="featuresTrack">
-            <!-- Card 1: Display -->
-            <article class="feature-card" data-part="dsp">
+            <!-- Bento Tile 1 (Spans 2 cols): 8.4" IPS Full HD Display -->
+            <article class="bento-tile feature-card bento-tile-2col bento-tile-display" data-part="dsp">
               <div class="feature-card-glow" aria-hidden="true"></div>
-              <p class="feature-num">01 / DISPLAY</p>
-              <div class="feature-stat-counter" data-counter-to="8.4" data-counter-decimals="1" data-counter-suffix='&Prime;'>0</div>
-              <h3 class="feature-name">8.4" IPS FULL HD</h3>
-              <p class="feature-desc">1200 &times; 1920 high pixel density. 350 nits brightness for daylight visibility and anti-glare coating.</p>
-              <ul class="feature-specs-list">
-                <li><span>Resolution</span><span>1200 &times; 1920</span></li>
-                <li><span>Panel Type</span><span>IPS Wide Angle</span></li>
-                <li><span>Touch</span><span>5-Point Capacitive</span></li>
+              <div class="bento-topline">
+                <span class="bento-badge">PRIMARY DISPLAY</span>
+                <span class="bento-num">01 / SUBSYSTEM</span>
+              </div>
+              <div class="bento-hero-stat">
+                <div class="feature-stat-counter bento-stat-val" data-counter-to="8.4" data-counter-decimals="1" data-counter-suffix='&Prime;'>0</div>
+                <h3 class="bento-stat-sub">8.4" IPS FULL HD &bull; 1200&times;1920</h3>
+              </div>
+              <p class="bento-desc">High pixel density with 350 nits daylight outdoor rating, hardened anti-scratch surface, and 5-point responsive capacitive touch for digital classrooms and warehouse picking.</p>
+
+              <!-- Daylight Meter Micro-Visual -->
+              <div class="bento-visual daylight-visual" aria-hidden="true">
+                <div class="visual-label">
+                  <span>DAYLIGHT READABILITY</span>
+                  <span class="text-accent">350 NITS OUTDOOR</span>
+                </div>
+                <div class="daylight-meter">
+                  <div class="daylight-bar" style="width: 82%;"></div>
+                </div>
+                <div class="daylight-ticks">
+                  <span>INDOORS 150</span>
+                  <span>SHADE 250</span>
+                  <span class="text-accent">DIRECT SUN 350 NITS</span>
+                </div>
+              </div>
+
+              <ul class="bento-specs-row">
+                <li><strong>Panel Type</strong><span>IPS Wide-Viewing</span></li>
+                <li><strong>Aspect Ratio</strong><span>16:10 Document Fit</span></li>
+                <li><strong>Multi-Touch</strong><span>5-Point Capacitive</span></li>
               </ul>
             </article>
 
-            <!-- Card 2: Processor -->
-            <article class="feature-card" data-part="cpu">
+            <!-- Bento Tile 2 (1 col): 7100 mAh Battery -->
+            <article class="bento-tile feature-card bento-tile-1col bento-tile-battery" data-part="bat">
               <div class="feature-card-glow" aria-hidden="true"></div>
-              <p class="feature-num">02 / PROCESSOR</p>
-              <div class="feature-stat-counter" data-counter-to="8" data-counter-suffix="-Core">0</div>
-              <h3 class="feature-name">OCTA-CORE 2.2 GHz</h3>
-              <p class="feature-desc">Dual Cortex-A76 performance cores + six Cortex-A55 efficiency cores for balanced speed and battery life.</p>
-              <ul class="feature-specs-list">
-                <li><span>Performance</span><span>2&times; A76 @ 2.2 GHz</span></li>
-                <li><span>Efficiency</span><span>6&times; A55 @ 2.0 GHz</span></li>
-                <li><span>Graphics</span><span>Mali High-Res GPU</span></li>
+              <div class="bento-topline">
+                <span class="bento-badge">POWER CELL</span>
+                <span class="bento-num">02</span>
+              </div>
+              <div class="bento-hero-stat">
+                <div class="feature-stat-counter bento-stat-val" data-counter-to="7100" data-counter-suffix=" mAh">0</div>
+                <h3 class="bento-stat-sub">7100 mAh ALL-DAY</h3>
+              </div>
+              <p class="bento-desc">Continuous 14-hour operational shift duty designed for non-stop enterprise routes.</p>
+
+              <!-- Battery Shift Gauge Micro-Visual -->
+              <div class="bento-visual battery-visual" aria-hidden="true">
+                <div class="battery-cell-wrap">
+                  <div class="battery-fill-level" style="width: 92%;"></div>
+                </div>
+                <div class="battery-meta">
+                  <span>FULL SHIFT (14H)</span>
+                  <span class="text-accent">FAST CHARGE</span>
+                </div>
+              </div>
+
+              <ul class="bento-specs-row">
+                <li><strong>Chemistry</strong><span>Li-Polymer</span></li>
+                <li><strong>Shift Duty</strong><span>12-14h Active</span></li>
               </ul>
             </article>
 
-            <!-- Card 3: RAM -->
-            <article class="feature-card" data-part="ram">
+            <!-- Bento Tile 3 (1 col): Octa-Core 2.2 GHz -->
+            <article class="bento-tile feature-card bento-tile-1col bento-tile-cpu" data-part="cpu">
               <div class="feature-card-glow" aria-hidden="true"></div>
-              <p class="feature-num">03 / MEMORY</p>
-              <div class="feature-stat-counter" data-counter-to="8" data-counter-suffix=" GB">0</div>
-              <h3 class="feature-name">LPDDR4X HIGH-SPEED RAM</h3>
-              <p class="feature-desc">Seamlessly switch between billing applications, spreadsheets, and video conferencing without restarts.</p>
-              <ul class="feature-specs-list">
-                <li><span>Capacity</span><span>8 GB Onboard</span></li>
-                <li><span>Architecture</span><span>Low-Power DDR4X</span></li>
-                <li><span>Multi-Tasking</span><span>Zero Reloads</span></li>
+              <div class="bento-topline">
+                <span class="bento-badge">SILICON ENGINE</span>
+                <span class="bento-num">03</span>
+              </div>
+              <div class="bento-hero-stat">
+                <div class="feature-stat-counter bento-stat-val" data-counter-to="8" data-counter-suffix="-Core">0</div>
+                <h3 class="bento-stat-sub">OCTA-CORE 2.2 GHz</h3>
+              </div>
+              <p class="bento-desc">Dual Cortex-A76 performance cores + six Cortex-A55 efficiency cores.</p>
+
+              <!-- CPU Architecture Micro-Visual -->
+              <div class="bento-visual cpu-visual" aria-hidden="true">
+                <div class="cpu-cores-grid">
+                  <span class="core-cell perf">A76 2.2G</span>
+                  <span class="core-cell perf">A76 2.2G</span>
+                  <span class="core-cell eff">A55</span>
+                  <span class="core-cell eff">A55</span>
+                  <span class="core-cell eff">A55</span>
+                  <span class="core-cell eff">A55</span>
+                  <span class="core-cell eff">A55</span>
+                  <span class="core-cell eff">A55</span>
+                </div>
+              </div>
+
+              <ul class="bento-specs-row">
+                <li><strong>Architecture</strong><span>64-Bit ARM</span></li>
+                <li><strong>Graphics</strong><span>Mali High-Res</span></li>
               </ul>
             </article>
 
-            <!-- Card 4: Storage -->
-            <article class="feature-card" data-part="sto">
+            <!-- Bento Tile 4 (1 col): 8GB RAM -->
+            <article class="bento-tile feature-card bento-tile-1col" data-part="ram">
               <div class="feature-card-glow" aria-hidden="true"></div>
-              <p class="feature-num">04 / STORAGE</p>
-              <div class="feature-stat-counter" data-counter-to="128" data-counter-suffix=" GB">0</div>
-              <h3 class="feature-name">128GB + 512GB MICROSD</h3>
-              <p class="feature-desc">Store extensive offline video libraries, maps, and enterprise databases with massive expandable microSD capacity.</p>
-              <ul class="feature-specs-list">
-                <li><span>Internal</span><span>128 GB High-Speed</span></li>
-                <li><span>Expansion</span><span>Up to 512 GB TF</span></li>
-                <li><span>OTG</span><span>USB-C Flash Drive</span></li>
+              <div class="bento-topline">
+                <span class="bento-badge">MEMORY</span>
+                <span class="bento-num">04</span>
+              </div>
+              <div class="bento-hero-stat">
+                <div class="feature-stat-counter bento-stat-val" data-counter-to="8" data-counter-suffix=" GB">0</div>
+                <h3 class="bento-stat-sub">8 GB LPDDR4X</h3>
+              </div>
+              <p class="bento-desc">Instant app switching between billing ERPs, digital forms, and video classrooms without reloads.</p>
+              <ul class="bento-specs-row">
+                <li><strong>Architecture</strong><span>LPDDR4X Low-Power</span></li>
+                <li><strong>Multitask</strong><span>Zero Reloads</span></li>
               </ul>
             </article>
 
-            <!-- Card 5: Battery -->
-            <article class="feature-card" data-part="bat">
+            <!-- Bento Tile 5 (1 col): 128GB Storage + 512GB MicroSD -->
+            <article class="bento-tile feature-card bento-tile-1col" data-part="sto">
               <div class="feature-card-glow" aria-hidden="true"></div>
-              <p class="feature-num">05 / BATTERY</p>
-              <div class="feature-stat-counter" data-counter-to="7100" data-counter-suffix=" mAh">0</div>
-              <h3 class="feature-name">7100 mAh ALL-DAY CAPACITY</h3>
-              <p class="feature-desc">Up to 14 hours of continuous active field runtime. High charge cycle durability designed for daily commercial shifts.</p>
-              <ul class="feature-specs-list">
-                <li><span>Capacity</span><span>7100 mAh Li-Polymer</span></li>
-                <li><span>Runtime</span><span>12-14 Hours Active</span></li>
-                <li><span>Charging</span><span>Type-C Fast Charge</span></li>
+              <div class="bento-topline">
+                <span class="bento-badge">STORAGE</span>
+                <span class="bento-num">05</span>
+              </div>
+              <div class="bento-hero-stat">
+                <div class="feature-stat-counter bento-stat-val" data-counter-to="128" data-counter-suffix=" GB">0</div>
+                <h3 class="bento-stat-sub">128GB + 512GB TF</h3>
+              </div>
+              <p class="bento-desc">Store entire curriculum libraries, offline regional vector maps, and enterprise databases easily.</p>
+              <ul class="bento-specs-row">
+                <li><strong>Internal</strong><span>128 GB High-Speed</span></li>
+                <li><strong>MicroSD</strong><span>Up to 512 GB TF</span></li>
               </ul>
             </article>
 
-            <!-- Card 6: 4G LTE -->
-            <article class="feature-card" data-part="lte">
+            <!-- Bento Tile 6 (1 col): 4G LTE VoLTE Dual SIM -->
+            <article class="bento-tile feature-card bento-tile-1col" data-part="lte">
               <div class="feature-card-glow" aria-hidden="true"></div>
-              <p class="feature-num">06 / NETWORK</p>
-              <div class="feature-stat-counter">4G LTE</div>
-              <h3 class="feature-name">ALL-NETWORK CONNECTIVITY</h3>
-              <p class="feature-desc">Built-in Nano SIM with VoLTE calling. Dual-band Wi-Fi (2.4/5GHz), Bluetooth 5.2, and GPS/GLONASS onboard.</p>
-              <ul class="feature-specs-list">
-                <li><span>Cellular</span><span>4G LTE VoLTE</span></li>
-                <li><span>Wi-Fi</span><span>802.11 a/b/g/n/ac</span></li>
-                <li><span>Location</span><span>GPS &amp; GLONASS</span></li>
+              <div class="bento-topline">
+                <span class="bento-badge">WIRELESS</span>
+                <span class="bento-num">06</span>
+              </div>
+              <div class="bento-hero-stat">
+                <div class="feature-stat-counter bento-stat-val">4G LTE</div>
+                <h3 class="bento-stat-sub">VOLTE DUAL SIM</h3>
+              </div>
+              <p class="bento-desc">Dedicated Nano-SIM tray with wideband VoLTE voice, Dual-Band 2.4/5GHz Wi-Fi, and GPS/GLONASS.</p>
+              <ul class="bento-specs-row">
+                <li><strong>Cellular</strong><span>4G LTE VoLTE All-Carrier</span></li>
+                <li><strong>Location</strong><span>GPS &amp; GLONASS</span></li>
               </ul>
             </article>
 
-            <!-- Card 7: Camera -->
-            <article class="feature-card" data-part="cam">
+            <!-- Bento Tile 7 (1 col): 13MP AF Camera + 5MP Front -->
+            <article class="bento-tile feature-card bento-tile-1col" data-part="cam">
               <div class="feature-card-glow" aria-hidden="true"></div>
-              <p class="feature-num">07 / CAMERA</p>
-              <div class="feature-stat-counter" data-counter-to="13" data-counter-suffix=" MP">0</div>
-              <h3 class="feature-name">13MP REAR + 5MP FRONT</h3>
-              <p class="feature-desc">Fast autofocus for 1D/2D barcode scanning, document digitization, and crisp high-def remote video classroom calls.</p>
-              <ul class="feature-specs-list">
-                <li><span>Rear Lens</span><span>13 MP Autofocus + Flash</span></li>
-                <li><span>Front Lens</span><span>5 MP Fixed Focus</span></li>
-                <li><span>Video</span><span>1080p @ 30fps</span></li>
+              <div class="bento-topline">
+                <span class="bento-badge">OPTICS</span>
+                <span class="bento-num">07</span>
+              </div>
+              <div class="bento-hero-stat">
+                <div class="feature-stat-counter bento-stat-val" data-counter-to="13" data-counter-suffix=" MP">0</div>
+                <h3 class="bento-stat-sub">13MP AF + 5MP FRONT</h3>
+              </div>
+              <p class="bento-desc">Fast autofocus camera optimized for 1D/2D barcode scanning, receipt OCR, and crisp HD video meetings.</p>
+              <ul class="bento-specs-row">
+                <li><strong>Rear Lens</strong><span>13 MP Autofocus + Flash</span></li>
+                <li><strong>Front Lens</strong><span>5 MP Classroom HD</span></li>
               </ul>
             </article>
 
-            <!-- Card 8: OS -->
-            <article class="feature-card" data-part="os">
+            <!-- Bento Tile 8 (Spans 2 cols): Android 17 Enterprise Platform -->
+            <article class="bento-tile feature-card bento-tile-2col bento-tile-os" data-part="os">
               <div class="feature-card-glow" aria-hidden="true"></div>
-              <p class="feature-num">08 / OS</p>
-              <div class="feature-stat-counter">Android 17</div>
-              <h3 class="feature-name">CLEAN &amp; SECURE PLATFORM</h3>
-              <p class="feature-desc">Zero third-party bloatware. Native support for school parental controls, enterprise MDM lockdown, and Google Play.</p>
-              <ul class="feature-specs-list">
-                <li><span>Version</span><span>Android 17</span></li>
-                <li><span>Security</span><span>Monthly Patch Support</span></li>
-                <li><span>Management</span><span>MDM &amp; Kiosk Ready</span></li>
-              </ul>
+              <div class="bento-topline">
+                <span class="bento-badge">OPERATING SYSTEM</span>
+                <span class="bento-num">08 / ENTERPRISE PLATFORM</span>
+              </div>
+              <div class="bento-hero-stat">
+                <div class="feature-stat-counter bento-stat-val">Android 17</div>
+                <h3 class="bento-stat-sub">CLEAN &bull; SECURE &bull; ZERO BLOATWARE</h3>
+              </div>
+              <p class="bento-desc">Pure stock enterprise build with zero advertising bloat. Features native parental controls, MDM fleet lockdown, and kiosk mode for single-app point-of-sale or school examination environments.</p>
+
+              <div class="bento-tags-row">
+                <span class="bento-tag">&check; KIOSK MODE</span>
+                <span class="bento-tag">&check; MDM READY</span>
+                <span class="bento-tag">&check; SCHOOL SANDBOX</span>
+                <span class="bento-tag">&check; REGULAR SECURITY PATCHES</span>
+              </div>
+            </article>
+
+            <!-- Bento Tile 9 (Spans 2 cols): Industrial Chassis & Acoustic Architecture -->
+            <article class="bento-tile feature-card bento-tile-2col bento-tile-build">
+              <div class="feature-card-glow" aria-hidden="true"></div>
+              <div class="bento-topline">
+                <span class="bento-badge">CHASSIS &amp; AUDIO</span>
+                <span class="bento-num">09 / INDUSTRIAL CRAFT</span>
+              </div>
+              <div class="bento-hero-stat">
+                <div class="feature-stat-counter bento-stat-val">Dual Box</div>
+                <h3 class="bento-stat-sub">STEREO SPEAKERS &bull; REINFORCED CHASSIS</h3>
+              </div>
+              <p class="bento-desc">Precision enclosure engineered to endure classroom drops and daily field vibrations. Includes dedicated 3.5mm headphone audio jack and reversible USB Type-C with OTG peripheral connectivity.</p>
+
+              <div class="bento-tags-row">
+                <span class="bento-tag">&check; 3.5MM AUDIO JACK</span>
+                <span class="bento-tag">&check; USB TYPE-C OTG</span>
+                <span class="bento-tag">&check; DROP-TESTED FRAME</span>
+                <span class="bento-tag">&check; DUAL BOX SPEAKERS</span>
+              </div>
             </article>
           </div>
         </div>
@@ -912,6 +1055,15 @@
                   <button class="btn btn-ghost qty-pill" type="button" data-qty="500" style="padding:6px 14px;min-height:36px;font-size:11px;">500+ units</button>
                 </div>
                 <input class="form-input" id="quoteQuantity" name="quantity" type="number" min="1" value="10" required />
+
+                <!-- Dynamic Procurement Tier & Subsidy Benefit Indicator -->
+                <div class="procurement-tier-badge" id="procurementTierBadge" aria-live="polite">
+                  <div class="tier-indicator">
+                    <span class="tier-tag" id="tierTag">STANDARD VOLUME TIER (10+ UNITS)</span>
+                    <span class="tier-dispatch" id="tierDispatch">&bull; Dispatch in 48 Hours</span>
+                  </div>
+                  <p class="tier-perk" id="tierPerk">Includes 10% educational/institutional fleet subsidy + Coimbatore Labs direct warranty.</p>
+                </div>
               </div>
 
               <div class="form-group">
